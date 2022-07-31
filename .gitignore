@@ -1,3 +1,9 @@
+# CUSTOM ignored files
+./config.ini
+Client/config.ini
+Server/config.ini
+.idea/
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

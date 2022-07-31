@@ -19,7 +19,7 @@ class RSA:
         self.public_key = public_key
         self.private_key = private_key
 
-        if not public_key.startswith('PublicKey(') or not private_key.startswith('PrivateKey('):
+        if public_key is None or private_key is None:
             # If no public or private keys are given, generate new ones automatically
             self.generate()
 

@@ -5,8 +5,6 @@ from os.path import exists
 from modules.config_parser import Config
 from modules.message_handler import *
 from modules.encryption import RSA
-from modules.gui import *
-
 
 def main():
     """
@@ -37,12 +35,9 @@ def main():
     try:
         print("> Creating Message Handler")
 
-        with Handler(config) as message_handler:
-            while True:
-                try:
-                    message_handler.send(input(''))
-                except ConnectionResetError:
-                    continue
+        message_handler = Handler(config)
+        message_handler.start()
+
     except socket.gaierror as e:
         print("Error: Server Not Found")
         print(e)
@@ -57,6 +52,4 @@ if __name__ == '__main__':
 #  github.com/Foxtrt-com/P2P-Private-Chat  #
 ############################################""")
 
-    gui = GUI("Dark")
-    gui.mainloop()
     main()

@@ -4,19 +4,23 @@ Tkinter gui class
 """
 
 import tkinter as tk
+import tkinter.ttk as ttk
 from tkinter import *
 import sv_ttk
 
 
 class GUI(tk.Tk):
-    def __init__(self, theme):
+    def __init__(self, parent, config):
         super().__init__()
 
-        if theme == "Light":
+        self.config = config
+
+        if self.config.theme == "Light":
             sv_ttk.set_theme("light")
         else:
             sv_ttk.set_theme("dark")
 
+        self.parent = parent
         self.title('P2P Private Chat')
         self.geometry('800x600')
         self.minsize(800, 600)
@@ -25,34 +29,39 @@ class GUI(tk.Tk):
         # listbox+scrollbar for messages
         # input and button to send
 
-        t_frame = Frame(self)
-        t_frame.pack(side=TOP, anchor=N, fill=BOTH, expand=1)
+        self.frame = ttk.Frame(self)
+        self.frame.pack(anchor=N, expand=1, fill=BOTH)
 
-        myscroll = Scrollbar(t_frame)
-        myscroll.pack(side=RIGHT, fill=Y)
+        self.peer_scroll = ttk.Scrollbar(self.frame)
+        self.peer_scroll.grid(column=3, row=0, rowspan=6, sticky=NSEW)
 
-        mylist = Listbox(t_frame, yscrollcommand=myscroll.set)
-        for line in range(1, 100):
-            mylist.insert(END, "Number " + str(line))
-        mylist.pack(side=LEFT, fill=BOTH)
+        self.peer_list = tk.Listbox(self.frame, yscrollcommand=self.peer_scroll.set)
+        self.peer_list.grid(column=0, row=0, columnspan=3, rowspan=6, sticky=NSEW)
 
-        myscroll.config(command=mylist.yview)
+        self.peer_scroll.config(command=self.peer_list.yview)
 
-        myscroll = Scrollbar(t_frame)
-        myscroll.pack(side=RIGHT, fill=Y)
+        self.message_scroll = ttk.Scrollbar(self.frame)
+        self.message_scroll.grid(column=13, row=0, rowspan=5, sticky=NSEW)
 
-        mylist = Listbox(t_frame, yscrollcommand=myscroll.set)
-        for line in range(1, 100):
-            mylist.insert(END, "Number " + str(line))
-        mylist.pack(side=LEFT, fill=BOTH)
+        self.message_list = tk.Listbox(self.frame, yscrollcommand=self.message_scroll.set)
+        self.message_list.grid(column=4, row=0, columnspan=9, rowspan=5, sticky=NSEW)
 
-        myscroll.config(command=mylist.yview)
+        self.message_scroll.config(command=self.message_list.yview)
 
-        b_frame = Frame(self)
-        b_frame.pack(side=BOTTOM, anchor=S, fill=BOTH, expand=1)
+        self.entry = ttk.Entry(self.frame)
+        self.entry.grid(column=4, row=5, columnspan=7, sticky=EW)
 
-        user_in = Entry(b_frame)
-        user_in.pack(side=LEFT, fill=BOTH)
+        self.button = ttk.Button(self.frame, text="Send", command=self.send_msg)
+        self.button.grid(column=11, row=5, columnspan=3, sticky=EW)
 
-        btn = Button(b_frame, text="Send")
-        btn.pack(side=LEFT, fill=BOTH)
+        for i in range(14):
+            self.frame.columnconfigure(i, weight=1)
+        for i in range(6):
+            self.frame.rowconfigure(i, weight=1)
+
+    def send_msg(self):
+        message = self.entry.get()
+        self.parent.send(message)
+        self.message_list.insert(END, f"{self.config.display_name}: {message}")
+        self.entry.delete(first=0, last=END)
+

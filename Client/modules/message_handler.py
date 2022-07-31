@@ -2,6 +2,7 @@
 
 from .encryption import AES, RSA
 from .connections import Connections
+from .gui import *
 
 import socket
 import json
@@ -19,14 +20,14 @@ class Handler:
         self.socket.bind(('0.0.0.0', 0))
         self.connected = False
         self.listener = None
+        self.gui = GUI(self, self.config)
 
-    def __enter__(self):
+    def start(self):
         self.connect_to_rendezvous()
-
         self.start_listener()
-        return self
 
-    def __exit__(self, exc_type, exc_val, exc_tb):
+        self.gui.mainloop()
+
         self.send_disconnect()
         self.listener.join()
         self.socket.shutdown(1)
@@ -58,6 +59,7 @@ class Handler:
 
         for peer in peers:
             self.peers.add(peer)
+            self.gui.peer_list.insert(END, peer['display_name'])
 
         if len(self.peers) >= 1:
             print("> Sending connect message to peers")
@@ -80,17 +82,20 @@ class Handler:
                 print(f"> New connection from {address}")
                 _, display_name, public_key = text.split("-")
                 self.peers.add({'display_name': display_name, 'public_key': public_key, 'address': address})
+                self.gui.peer_list.insert(END, display_name)
             elif text.startswith("DISCONNECT-"):
                 print(f"Existing peer disconnected {address}")
                 _, display_name, public_key = text.split("-")
                 self.peers.sub({'display_name': display_name, 'public_key': public_key, 'address': address})
+                index = self.gui.peer_list.get(0, tk.END).index(display_name)
+                self.gui.peer_list.delete(index)
             else:
                 peer_name = None
                 for peer in self.peers.list_of_peers():
                     if tuple(peer['address']) == address:
                         peer_name = peer['display_name']
 
-                print(f"{peer_name}: {text}")
+                self.gui.message_list.insert(END, f"{peer_name}: {text}")
 
     def start_listener(self):
         print("> Starting listener")
