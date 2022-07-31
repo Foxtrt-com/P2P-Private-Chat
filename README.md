@@ -10,14 +10,17 @@ A Peer to Peer AES(256)+RSA Chat Client and Rendezvous server
 ## Requirements
 Currently only requiring python 3.10 + some packages from pip
 
-No third party packages need installed via pip.
+*I will be packaging into exe formats so they can be standalone on windows*
 
 ## Usage
 ```
-python3 .\scotland_yard_pathfinder\main.py
+python3 .\Client\app.py
+```
+```
+python3 .\Server\app.py
 ```
 
 ## Repo Owners
-|<img height="auto" width="100" src="https://avatars.githubusercontent.com/u/74470736" />|<img height="auto" width="100" src="https://avatars.githubusercontent.com/u/47248479" />|
-|-|-|
-|[@Chelsea-Fox](https://github.com/Chelsea-Fox)|[@wigi426](https://github.com/wigi426)|
+|<img height="auto" width="100" src="https://avatars.githubusercontent.com/u/74470736" />|
+|-|
+|[@Chelsea-Fox](https://github.com/Chelsea-Fox)|
