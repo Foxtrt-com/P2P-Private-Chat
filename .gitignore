@@ -2,6 +2,7 @@
 /config.ini
 /Client/config.ini
 /Server/config.ini
+/output/config.ini
 .idea/
 
 # Byte-compiled / optimized / DLL files
