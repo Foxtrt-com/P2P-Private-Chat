@@ -1,4 +1,5 @@
-<img align="left" height="25px" src="https://img.shields.io/badge/Python-FFD43B?style=for-the-badge&logo=python&logoColor=blue" />
+<img align="left" height="25px" src="https://github.com/Foxtrt-com/P2P-Private-Chat/actions/workflows/codeql-analysis.yml/badge.svg?branch=master" />
+<img align="right" height="25px" src="https://img.shields.io/badge/Python-FFD43B?style=for-the-badge&logo=python&logoColor=blue" />
 <img align="right" height="25px" src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2FFoxtrt-com%2FP2P-Private-Chat%2F&count_bg=%2379C83D&title_bg=%23555555&icon=github.svg&icon_color=%23E7E7E7&title=Hits&edge_flat=true"/>
 <img align="right" height="25px" src="https://img.shields.io/badge/Version-v1.0.0-blue?style=flat-square"/>
 <br />
