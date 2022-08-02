@@ -19,7 +19,7 @@ Python 3.10
 There are two ways to run both the server and client, the first being download and run the exe files, or to download and run with python directly.
 ### Run from exe
 Simply download and run!
-[exe files](https://github.com/Foxtrt-com/P2P-Private-Chat/tree/master/output)
+[exe files](https://github.com/Foxtrt-com/P2P-Private-Chat/releases)
 
 ### Run with python
 ```
