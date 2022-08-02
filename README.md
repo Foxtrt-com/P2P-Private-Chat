@@ -8,6 +8,8 @@
 A Peer to Peer AES(256)+RSA Chat Client and Rendezvous server
 
 ## Requirements
+If you are running the packaged exe version then there are no requirements, if you wish to run from source you will require:
+
 Python 3.10
 
 [requirements.txt](https://github.com/Foxtrt-com/P2P-Private-Chat/blob/master/requirements.txt)
