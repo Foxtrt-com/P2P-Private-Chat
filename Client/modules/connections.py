@@ -37,4 +37,4 @@ class Connections:
         for peer in self.peers:
             return_val.append(peer)
 
-        return  return_val
+        return return_val

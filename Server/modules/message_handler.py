@@ -28,7 +28,7 @@ class Handler:
         print("> Sending new peer a list of current peers")
 
         # Send data to peer
-        self.socket.sendto(encrypted_key + nonce + cipher_text, peer['address'])
+        self.socket.sendto(encrypted_key + nonce + cipher_text, (peer['address'], peer['outbound_port']))
 
     def receive(self):
         while True:
@@ -37,14 +37,20 @@ class Handler:
 
             if text.startswith("CONNECT-"):
                 print(f"> New connection from {address}")
-                _, display_name, public_key = text.split("-")
+                _, display_name, public_key, inbound_port = text.split("-")
+                ip, outbound_port = address
 
-                self.send(self.peers.peers, {'display_name': display_name, 'public_key': public_key, 'address': address})
-                self.peers.add({'display_name': display_name, 'public_key': public_key, 'address': address})
+                self.send(self.peers.peers, {'display_name': display_name, 'public_key': public_key, 'address': ip,
+                                             'inbound_port': int(inbound_port), 'outbound_port': outbound_port})
+
+                self.peers.add({'display_name': display_name, 'public_key': public_key, 'address': ip,
+                                'inbound_port': int(inbound_port), 'outbound_port': outbound_port})
             elif text.startswith("DISCONNECT-"):
                 print(f"> Existing peer disconnected {address}")
-                _, display_name, public_key = text.split("-")
-                self.peers.sub({'display_name': display_name, 'public_key': public_key, 'address': address})
+                _, display_name, public_key, inbound_port = text.split("-")
+                ip, outbound_port = address
+                self.peers.sub({'display_name': display_name, 'public_key': public_key, 'address': ip,
+                                'inbound_port': int(inbound_port), 'outbound_port': outbound_port})
 
     def start_listener(self):
         self.receive()

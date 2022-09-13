@@ -6,6 +6,7 @@ from modules.config_parser import Config
 from modules.message_handler import *
 from modules.encryption import RSA
 
+
 def main():
     """
     Main program start code
