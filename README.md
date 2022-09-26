@@ -4,7 +4,7 @@
 <img align="right" height="25px" src="https://img.shields.io/badge/Version-v1.0.1-blue?style=flat-square"/>
 <br />
 
-<img height="100px" src="https://github.com/Foxtrt-com/P2P-Private-Chat/banner.png?branch=master" />
+<img height="100px" src="https://github.com/Foxtrt-com/P2P-Private-Chat/P2P Private Chat Logo.png?branch=master" />
 
 A Peer to Peer AES(256)+RSA Chat Client and Rendezvous server
 
