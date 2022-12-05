@@ -31,6 +31,7 @@ python3 .\Server\app.py
 
 ## Support
 ![Discord Banner 2](https://discordapp.com/api/guilds/1049238673130012723/widget.png?style=banner2)
+[Join Here](https://discord.gg/rNccqTK2V8)
 
 ## Repo Owners
 |<img height="auto" width="100" src="https://avatars.githubusercontent.com/u/74470736" />|
