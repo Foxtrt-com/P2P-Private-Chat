@@ -29,6 +29,9 @@ python3 .\Client\app.py
 python3 .\Server\app.py
 ```
 
+## Support
+![Discord Banner 2](https://discordapp.com/api/guilds/1049238673130012723/widget.png?style=banner2)
+
 ## Repo Owners
 |<img height="auto" width="100" src="https://avatars.githubusercontent.com/u/74470736" />|
 |-|
